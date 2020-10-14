@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 function DiceCard({ diceScore, roundScore, roll, keep }) {
+
     return (
         <div className="card">
             <div className="row">

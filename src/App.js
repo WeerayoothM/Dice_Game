@@ -5,6 +5,7 @@ import './App.css';
 import Header from './components/Header';
 import ScoreCard from './components/ScoreCard';
 import DiceCard from './components/DiceCard';
+import ScoreContext from './context/ScoreContext';
 
 function App() {
   const [playerScore, setPlayerScore] = useState([0, 0]);
@@ -42,12 +43,14 @@ function App() {
 
   return (
     <Fragment>
-      <Header resetGame={resetGame} playerScore={playerScore} />
-      <div className="container">
-        <ScoreCard name='1' score={playerScore[0]} active={currentPlayer === 0 ? true : false} />
-        <DiceCard roll={roll} keep={keep} roundScore={roundScore} diceScore={diceScore} />
-        <ScoreCard name='2' score={playerScore[1]} active={currentPlayer === 1 ? true : false} />
-      </div>
+      <ScoreContext.Provider >
+        <Header resetGame={resetGame} playerScore={playerScore} />
+        <div className="container">
+          <ScoreCard name='1' score={playerScore[0]} active={currentPlayer === 0 ? true : false} />
+          <DiceCard roll={roll} keep={keep} roundScore={roundScore} diceScore={diceScore} />
+          <ScoreCard name='2' score={playerScore[1]} active={currentPlayer === 1 ? true : false} />
+        </div>
+      </ScoreContext.Provider>
     </Fragment>
   );
 }
